@@ -1,7 +1,7 @@
 'use client'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { LayoutDashboard, Receipt, PieChart, Settings, X } from 'lucide-react'
+import { LayoutDashboard, Receipt, PieChart, Settings, X, CheckSquare } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useFinanceStore } from '@/store/useFinanceStore'
 
@@ -9,6 +9,7 @@ const navItems = [
   { name: 'Overview', href: '/', icon: LayoutDashboard },
   { name: 'Transactions', href: '/transactions', icon: Receipt },
   { name: 'Analytics', href: '/analytics', icon: PieChart },
+  { name: 'Checklist', href: '/checklist', icon: CheckSquare },
   { name: 'Settings', href: '/settings', icon: Settings },
 ]
 
