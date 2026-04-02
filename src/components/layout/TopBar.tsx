@@ -1,13 +1,19 @@
 'use client'
 import { useFinanceStore } from '@/store/useFinanceStore'
-import { Bell, Search, UserCircle } from 'lucide-react'
+import { Bell, Search, UserCircle, Menu } from 'lucide-react'
 
 export function TopBar() {
-  const { role, setRole } = useFinanceStore()
+  const { role, setRole, setSidebarOpen } = useFinanceStore()
 
   return (
     <header className="sticky top-0 z-30 flex h-16 items-center justify-between border-b border-border bg-background/50 px-6 backdrop-blur-xl">
-      <div className="flex items-center flex-1">
+      <div className="flex items-center flex-1 gap-4">
+        <button 
+          className="md:hidden p-2 -ml-2 text-muted-foreground hover:text-foreground hover:bg-secondary/50 rounded-lg transition-colors"
+          onClick={() => setSidebarOpen(true)}
+        >
+          <Menu className="h-5 w-5" />
+        </button>
         {/* Placeholder for global search */}
       </div>
       

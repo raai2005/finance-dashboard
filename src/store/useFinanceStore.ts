@@ -19,11 +19,13 @@ interface FinanceState {
   transactions: Transaction[]
   searchQuery: string
   selectedCategory: string
+  isSidebarOpen: boolean
   
   // Actions
   setRole: (role: Role) => void
   setSearchQuery: (query: string) => void
   setSelectedCategory: (category: string) => void
+  setSidebarOpen: (open: boolean) => void
   addTransaction: (tx: Omit<Transaction, 'id'>) => void
   editTransaction: (id: string, tx: Partial<Transaction>) => void
   deleteTransaction: (id: string) => void
@@ -53,10 +55,12 @@ export const useFinanceStore = create<FinanceState>()(
       transactions: initialTransactions,
       searchQuery: '',
       selectedCategory: 'All',
+      isSidebarOpen: false,
 
       setRole: (role) => set({ role }),
       setSearchQuery: (query) => set({ searchQuery: query }),
       setSelectedCategory: (category) => set({ selectedCategory: category }),
+      setSidebarOpen: (open) => set({ isSidebarOpen: open }),
       
       addTransaction: (tx) => set((state) => ({
         transactions: [{ ...tx, id: generateId() }, ...state.transactions].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
