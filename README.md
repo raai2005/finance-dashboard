@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Premium Finance Dashboard
 
-## Getting Started
+A sleek, responsive, and feature-rich Finance Dashboard built to track, manage, and understand user financial activity. The application utilizes a premium dark-mode "glassmorphism" aesthetic and handles complex local state management efficiently.
 
-First, run the development server:
+## 🚀 Features
 
+### **1. Comprehensive Dashboard Overview**
+- **Summary Cards**: Track Total Balance, Income, and Expenses instantly.
+- **Dynamic Visualizations**: 
+  - **Balance Trend**: Beautiful interactive area charts mapping your money flow over time.
+  - **Spending Breakdown**: Donut charts intuitively categorizing your expenses.
+- **AI-Powered Insights**: Automatically calculates your highest spending categories and monthly savings targets dynamically based on your data set.
+
+### **2. Advanced Transactions Management**
+- **Robust Data Table**: View, filter, search, and manage a complete list of transactions.
+- **Client-Side Filtering**: Real-time filtering by category and instant search by description.
+- **Interactive Modals**: Smooth animated modals for adding and editing transactions.
+
+### **3. Role-Based Access Control (RBAC) Simulation**
+- Switch between **Viewer Mode** and **Admin Mode** dynamically right from the Top Navigation.
+- Form inputs, Edit, and Delete actions are gracefully hidden or disabled when in Viewer mode, guaranteeing data integrity.
+
+### **4. Local Storage Persistence & Exports**
+- **100% Persisted State**: Utilizing Zustand's persist middleware, all your transactions, active roles, and preferences are automatically saved to `localStorage` and persist through browser refreshes.
+- **JSON Data Export**: Instantly download a secure `.json` backup of all your transactions directly from the Settings page.
+
+## 🛠️ Technology Stack
+- **Framework**: [Next.js](https://nextjs.org/) (App Router format)
+- **Language**: [TypeScript](https://www.typescriptlang.org/) for robust static typing.
+- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/) with custom native CSS variables for the glassmorphism dark theme.
+- **State Management**: [Zustand](https://github.com/pmndrs/zustand) for lightweight, predictable global state without deeply nested contexts.
+- **Visualizations**: [Recharts](https://recharts.org/) for elegant data plotting.
+- **Icons**: [Lucide React](https://lucide.dev/) for crisp, scalable vectors.
+
+## ⚙️ Local Setup & Installation
+
+Follow these steps to get the project running locally:
+
+**1. Clone the repository**
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone <your-repo-url>
+cd finance_dashboard
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**2. Install dependencies**
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+**3. Start the development server**
+```bash
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+**4. Open the application**
+Navigate to [http://localhost:3000](http://localhost:3000) in your browser.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🎨 Design Philosophy
+The UI was meticulously crafted to present complex financial data elegantly rather than overwhelmingly. It embraces a strict dark mode interface layered with subtle translucent glass panels (`backdrop-filter: blur()`). This eliminates visual clutter while allowing vibrant accents (like standard green for income, red for expenses, and custom UI primary colors) to immediately draw user focus to important metrics.
