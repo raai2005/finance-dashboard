@@ -3,6 +3,8 @@ import { useFinanceStore, Transaction } from '@/store/useFinanceStore'
 import { X } from 'lucide-react'
 import { useState, useEffect } from 'react'
 
+import { toast } from 'sonner'
+
 interface Props {
   isOpen: boolean
   onClose: () => void
@@ -49,8 +51,10 @@ export function TransactionModal({ isOpen, onClose, transactionToEdit }: Props) 
 
     if (transactionToEdit) {
       editTransaction(transactionToEdit.id, payload)
+      toast.success('Transaction updated successfully')
     } else {
       addTransaction(payload)
+      toast.success('Transaction created successfully')
     }
     
     onClose()

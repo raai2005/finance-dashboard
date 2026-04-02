@@ -1,6 +1,7 @@
 'use client'
 import { useFinanceStore } from '@/store/useFinanceStore'
 import { Download, Trash2 } from 'lucide-react'
+import { toast } from 'sonner'
 
 export default function SettingsPage() {
   const { transactions, clearData } = useFinanceStore()
@@ -13,11 +14,13 @@ export default function SettingsPage() {
     document.body.appendChild(downloadAnchorNode) // required for firefox
     downloadAnchorNode.click()
     downloadAnchorNode.remove()
+    toast.success('Backup downloaded successfully')
   }
 
   const handleClear = () => {
     if (confirm("Are you sure you want to delete all transactions? This cannot be undone.")) {
       clearData()
+      toast.success('All data permanently deleted')
     }
   }
 

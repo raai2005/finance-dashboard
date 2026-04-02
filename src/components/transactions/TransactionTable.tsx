@@ -1,8 +1,9 @@
 'use client'
 import { useFinanceStore, Transaction } from '@/store/useFinanceStore'
-import { Search, Plus, Edit2, Trash2 } from 'lucide-react'
+import { Search, Plus, Edit2, Trash2, Inbox } from 'lucide-react'
 import { useState } from 'react'
 import { TransactionModal } from './TransactionModal'
+import { toast } from 'sonner'
 
 export function TransactionTable() {
   const { transactions, role, searchQuery, setSearchQuery, selectedCategory, setSelectedCategory, deleteTransaction } = useFinanceStore()
@@ -81,8 +82,24 @@ export function TransactionTable() {
           <tbody className="divide-y divide-white/5">
             {filtered.length === 0 ? (
               <tr>
-                <td colSpan={role === 'admin' ? 6 : 5} className="px-6 py-8 text-center text-muted-foreground">
-                  No transactions found.
+                <td colSpan={role === 'admin' ? 6 : 5} className="px-6 py-16 text-center">
+                  <div className="flex flex-col items-center justify-center text-muted-foreground gap-3 animate-in fade-in duration-500">
+                    <div className="p-4 rounded-full bg-secondary/50 ring-1 ring-white/10 mb-2">
+                      <Inbox className="h-8 w-8 text-muted-foreground/50" />
+                    </div>
+                    <p className="text-base font-semibold text-foreground tracking-tight">No transactions found</p>
+                    <p className="text-sm max-w-[280px] mb-2 leading-relaxed">
+                      There is no matching financial data. Try adjusting your search filters or add a new entry.
+                    </p>
+                    {role === 'admin' && (
+                      <button 
+                        onClick={handleAddNew}
+                        className="text-sm text-primary hover:text-primary-foreground hover:bg-primary/20 px-4 py-2 mt-2 rounded-lg transition-colors font-medium border border-primary/20"
+                      >
+                        Create your first transaction
+                      </button>
+                    )}
+                  </div>
                 </td>
               </tr>
             ) : (
@@ -105,7 +122,10 @@ export function TransactionTable() {
                         <button onClick={() => handleEdit(tx)} className="p-1.5 text-muted-foreground hover:text-primary transition-colors focus:opacity-100">
                           <Edit2 className="h-4 w-4" />
                         </button>
-                        <button onClick={() => deleteTransaction(tx.id)} className="p-1.5 text-muted-foreground hover:text-destructive transition-colors focus:opacity-100">
+                        <button onClick={() => {
+                          deleteTransaction(tx.id)
+                          toast.success('Transaction deleted')
+                        }} className="p-1.5 text-muted-foreground hover:text-destructive transition-colors focus:opacity-100">
                           <Trash2 className="h-4 w-4" />
                         </button>
                       </div>
